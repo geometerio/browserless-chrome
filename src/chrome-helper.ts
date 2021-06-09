@@ -524,7 +524,8 @@ export const launchChrome = async (
   const browserServer = launchArgs.playwright
     ? await chromium.launchServer({
         ...launchArgs,
-        headless: true,
+        // headless: true,
+        headless: false,
         proxy: launchArgs.playwrightProxy,
       })
     : launchArgs.stealth

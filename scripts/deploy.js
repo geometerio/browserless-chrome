@@ -13,7 +13,8 @@ const {
   version,
 } = require('../package.json');
 
-const REPO = 'browserless/chrome';
+// const REPO = 'browserless/chrome';
+const REPO = 'geometer/browserless';
 
 const logExec = (cmd) => {
   debug(`  "${cmd}"`);
@@ -83,26 +84,26 @@ const deployVersion = async (tags, pptrVersion) => {
   -t ${REPO}:${minorBranch} \
   -t ${REPO}:${majorBranch} .`);
 
-  // docker push
-  await Promise.all([
-    logExec(`docker push ${REPO}:${patchBranch}`),
-    logExec(`docker push ${REPO}:${minorBranch}`),
-    logExec(`docker push ${REPO}:${majorBranch}`),
-  ]);
+  // // docker push
+  // await Promise.all([
+  //   logExec(`docker push ${REPO}:${patchBranch}`),
+  //   logExec(`docker push ${REPO}:${minorBranch}`),
+  //   logExec(`docker push ${REPO}:${majorBranch}`),
+  // ]);
 
-  await logExec(
-    `git add --force version.json hosts.json hints.json protocol.json`,
-  ).catch(noop);
-  await logExec(
-    `git commit --quiet -m "DEPLOY.js committing files for tag ${patchBranch}"`,
-  ).catch(noop);
-  await logExec(`git tag --force ${patchBranch}`);
-  await logExec(
-    `git push origin ${patchBranch} --force --quiet --no-verify &> /dev/null`,
-  ).catch(noop);
+  // await logExec(
+  //   `git add --force version.json hosts.json hints.json protocol.json`,
+  // ).catch(noop);
+  // await logExec(
+  //   `git commit --quiet -m "DEPLOY.js committing files for tag ${patchBranch}"`,
+  // ).catch(noop);
+  // await logExec(`git tag --force ${patchBranch}`);
+  // await logExec(
+  //   `git push origin ${patchBranch} --force --quiet --no-verify &> /dev/null`,
+  // ).catch(noop);
 
-  // git reset for next update
-  await cleanup();
+  // // git reset for next update
+  // await cleanup();
 };
 
 async function deploy() {
